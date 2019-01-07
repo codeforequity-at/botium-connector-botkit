@@ -1,0 +1,8 @@
+quick replies
+
+#me
+quick replies
+
+#bot
+Look, quick replies!
+BUTTONS Hello|Test

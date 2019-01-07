@@ -1,0 +1,9 @@
+{
+  "botium": {
+    "Capabilities": {
+      "PROJECTNAME": "botium-botpress-convo-sample",
+      "CONTAINERMODE": "botkit",
+      "BOTKIT_SERVER_URL": "http://34.248.48.247:8080"
+    }
+  }
+}

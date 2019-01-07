@@ -1,0 +1,13 @@
+help
+
+#me
+Help
+
+#bot
+BUTTONS Read the Docs|Join the Community|Expert Help
+
+#me
+contact
+
+#bot
+help@botkit.ai
