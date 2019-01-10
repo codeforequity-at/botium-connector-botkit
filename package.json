@@ -1,6 +1,6 @@
 {
   "name": "botium-connector-botkit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Botium Connector for Botkit",
   "main": "dist/botium-connector-botkit-cjs.js",
   "module": "dist/botium-connector-botkit-es.js",

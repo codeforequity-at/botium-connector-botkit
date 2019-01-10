@@ -31,6 +31,23 @@ class BotiumConnectorBotkit {
     } else {
       this.userId = uuidv4()
     }
+
+    const pingUrl = this.caps[Capabilities.BOTKIT_SERVER_URL]
+    return new Promise((resolve, reject) => {
+      request({
+        uri: pingUrl,
+        method: 'GET'
+      }, (err, response, body) => {
+        if (err) {
+          [debug, reject].forEach(fn => fn(`error on url check ${pingUrl}: ${err}`))
+        } else if (response.statusCode >= 400) {
+          [debug, reject].forEach(fn => fn(`url check ${pingUrl} got error response: ${response.statusCode}/${response.statusMessage}`))
+        } else {
+          debug(`success on url check ${pingUrl}`)
+          resolve()
+        }
+      })
+    })
   }
 
   UserSays (msg) {
@@ -79,7 +96,7 @@ class BotiumConnectorBotkit {
                 mediaUri: f.url
               }))
             }
-            this.queueBotSays(botMsg)
+            setTimeout(() => this.queueBotSays(botMsg), 0)
           }
         }
       })
