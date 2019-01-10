@@ -1,6 +1,6 @@
 {
   "name": "botium-connector-botkit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Botium Connector for Botkit",
   "main": "dist/botium-connector-botkit-cjs.js",
   "module": "dist/botium-connector-botkit-es.js",
@@ -23,7 +23,6 @@
     "@babel/node": "^7.2.2",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
-    "@babel/runtime": "^7.2.0",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
@@ -37,6 +36,7 @@
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.2.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "request": "^2.88.0",
