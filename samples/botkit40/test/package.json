@@ -1,0 +1,28 @@
+{
+  "name": "botium-botkit-convo-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botium-bindings": "^2.0.2",
+    "botium-core": "^1.5.1"
+  },
+  "botium": {
+    "convodirs": [
+      "spec\\convo"
+    ],
+    "expandConvos": true,
+    "expandUtterancesToConvos": false
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "botium-bindings": "latest",
+    "botium-connector-botkit": "../../",
+    "botium-connector-echo": "latest"
+  }
+}

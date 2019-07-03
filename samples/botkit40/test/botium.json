@@ -1,0 +1,10 @@
+{
+  "botium": {
+    "Capabilities": {
+      "PROJECTNAME": "botium-custom-chatbot-sample",
+      "CONTAINERMODE": "botkit",
+      "BOTKIT_VERSION": "BOTKIT_4_0",
+      "BOTKIT_4_0_URL": "http://localhost:3000/api/messages"
+    }
+  }
+}
