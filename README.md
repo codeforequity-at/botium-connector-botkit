@@ -10,18 +10,37 @@ This is a [Botium](https://github.com/codeforequity-at/botium-core) connector fo
 
 __Did you read the [Botium in a Nutshell](https://medium.com/@floriantreml/botium-in-a-nutshell-part-1-overview-f8d0ceaf8fb4) articles ? Be warned, without prior knowledge of Botium you won't be able to properly use this library!__
 
-## How it works ?
-Botium uses the [Botkit Anywhere](https://github.com/howdyai/botkit-starter-web) to connect to your chatbot.
+## How it works?
+
+This connector calls the webhook URL of botkit. 
+
+This webhook can be there even if your chatbot uses Websocket. You can set it in Botkit constructor:
+```
+const controller = new Botkit({
+  webhook_uri: '/api/messages',
+  ...
+})
+```
+
+There was a major change in Botkit. Botkit Anywhere is deprecated, and core lib version is changed from 0.7 to 4.0. 
+Botium supports officially __Botkit Core version 0.7 with Botkit Anywhere__ or 
+__Botkit Core version 4.0 with Botkit App created by [Yeoman generator](https://www.npmjs.com/package/generator-botkit)__,
+but may work with __Botkit Core version 4.0 with Botkit Anywhere__. 
+
+You can set your Botkit environment using __BOTKIT_VERSION__ capability.
+
+__Botium Botkit Connector 0.0.3 and below works just with the old Botkit stack!!!__
 
 It can be used as any other Botium connector with all Botium Stack components:
 * [Botium CLI](https://github.com/codeforequity-at/botium-cli/)
 * [Botium Bindings](https://github.com/codeforequity-at/botium-bindings/)
 * [Botium Box](https://www.botium.at)
 
+
 ## Requirements
 
 * __Node.js and NPM__
-* a __Botkit Anywhere Server__
+* a __Botkit Anywhere Server__, or __Botkit server created by Yeoman generator__
 * a __project directory__ on your workstation to hold test cases and Botium configuration
 
 ## Install Botium and Botkit Connector
@@ -58,7 +77,8 @@ Open the file _botium.json_ in your working directory and add the Botkit chatbot
     "Capabilities": {
       "PROJECTNAME": "<whatever>",
       "CONTAINERMODE": "botkit",
-      "BOTKIT_SERVER_URL": "..."
+      "BOTKIT_VERSION": "BOTKIT_4_0",
+      "BOTKIT_URL": "..."
     }
   }
 }
@@ -69,8 +89,31 @@ Botium setup is ready, you can begin to write your [BotiumScript](https://github
 
 Set the capability __CONTAINERMODE__ to __botkit__ to activate this connector.
 
+### BOTKIT_VERSION
+Default: 
+
+```ANYWHERE_AND_BOTKIT_0_7_AND_BELOW```
+
+Botkit stack. Set it to ```BOTKIT_4_0``` to use the new. 
+The two versions are using different capabilities, see below. 
+
+### BOTKIT_4_0_SERVER_URL
+__Just for new Botkit stack!!!__
+
+Botkit server webhook URL. The only required capability using the new stack
+
+### BOTKIT_4_0_...
+Just for new Botkit stack!!!
+
+You can use all other _Generic HTTP(S)/JSON Connector_ capabilities. 
+For example via __BOTKIT_4_0_HEADERS_TEMPLATE__ you can use __SIMPLEREST_HEADERS_TEMPLATE__ capability to customize the HTTP header.
+
 ### BOTKIT_SERVER_URL
+__Just for old Botkit stack!!!__
+
 The Botkit server url (without any path, just http/https, servername, port)
 
 ### BOTKIT_USERID
+__Just for old Botkit stack!!!__
+
 If set, this userId will be used. Otherwise, for each convo a new userId is generated.

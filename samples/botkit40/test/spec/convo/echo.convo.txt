@@ -1,0 +1,13 @@
+echo
+
+#me
+Hello
+
+#bot
+Echo: Hello
+
+#me
+Goodbye!
+
+#bot
+Echo: Goodbye!
