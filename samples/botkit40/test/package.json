@@ -8,10 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "botium-bindings": "^2.0.2",
-    "botium-core": "^1.5.1"
-  },
   "botium": {
     "convodirs": [
       "spec\\convo"

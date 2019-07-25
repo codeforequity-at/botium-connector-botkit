@@ -20,7 +20,7 @@ class BotiumConnectorBotkit40 extends SimpleRestContainer {
       }
     })
 
-    super({queueBotSays, caps: delegateCaps})
+    super({ queueBotSays, caps: delegateCaps })
   }
 }
 

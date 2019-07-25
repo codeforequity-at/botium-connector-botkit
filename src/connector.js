@@ -23,7 +23,7 @@ class BotiumConnectorBotkit {
 
     if (delegateClass) {
       // eslint-disable-next-line new-cap
-      this.delegateConnector = new delegateClass({queueBotSays, caps: this.delegateCaps})
+      this.delegateConnector = new delegateClass({ queueBotSays, caps: this.delegateCaps })
     }
   }
 
