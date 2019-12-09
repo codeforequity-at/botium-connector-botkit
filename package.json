@@ -1,6 +1,6 @@
 {
   "name": "botium-connector-botkit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Botium Connector for Botkit",
   "main": "dist/botium-connector-botkit-cjs.js",
   "module": "dist/botium-connector-botkit-es.js",
@@ -19,30 +19,30 @@
   },
   "homepage": "https://github.com/codeforequity-at/botium-core",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/node": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "eslint": "^6.1.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.6",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "rollup": "^1.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "rollup": "^1.27.9",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.7.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.15",
     "request": "^2.88.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "peerDependencies": {
-    "botium-core": ">= 1.4.0"
+    "botium-core": ">= 1.7.3"
   }
 }

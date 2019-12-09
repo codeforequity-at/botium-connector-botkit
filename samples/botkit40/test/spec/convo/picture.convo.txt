@@ -1,0 +1,8 @@
+picture
+
+#me
+picture
+
+#bot
+Look, an image!
+MEDIA http://tableflipper.com/IRX2.gif

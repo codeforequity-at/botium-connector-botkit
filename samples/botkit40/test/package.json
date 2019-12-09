@@ -1,8 +1,6 @@
 {
   "name": "botium-botkit-convo-sample",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "mocha spec"
   },
@@ -18,7 +16,7 @@
   "devDependencies": {
     "mocha": "latest",
     "botium-bindings": "latest",
-    "botium-connector-botkit": "../../",
+    "botium-connector-botkit": "../../../",
     "botium-connector-echo": "latest"
   }
 }
