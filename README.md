@@ -108,6 +108,8 @@ Just for new Botkit stack!!!
 You can use all other _Generic HTTP(S)/JSON Connector_ capabilities. 
 For example via __BOTKIT_4_0_HEADERS_TEMPLATE__ you can use __SIMPLEREST_HEADERS_TEMPLATE__ capability to customize the HTTP header.
 
+There is a [sample](./samples/botkit40/test) using the [UPDATE_CUSTOM logic hook](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/48660497/Integrated+Logic+Hooks) and the __BOTKIT_4_0_BODY_TEMPLATE__ capability to use custom user ids.
+
 ### BOTKIT_SERVER_URL
 __Just for old Botkit stack!!!__
 

@@ -1,0 +1,9 @@
+echo
+
+#me
+Hello
+UPDATE_CUSTOM BOTKIT_USER_ID|1234567
+
+#bot
+Echo: Hello
+

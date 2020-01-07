@@ -4,7 +4,12 @@
       "PROJECTNAME": "botium-custom-chatbot-sample",
       "CONTAINERMODE": "botkit",
       "BOTKIT_VERSION": "BOTKIT_4_0",
-      "BOTKIT_4_0_URL": "http://localhost:3000/api/messages"
+      "BOTKIT_4_0_URL": "http://localhost:3000/api/messages",
+      "BOTKIT_4_0_BODY_TEMPLATE": {
+        "text": "{{msg.messageText}}", 
+        "user": "{{msg.BOTKIT_USER_ID}}{{^msg.BOTKIT_USER_ID}}my-default-user-id{{/msg.BOTKIT_USER_ID}}",
+        "type": "message"
+      }
     }
   }
 }
