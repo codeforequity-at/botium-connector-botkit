@@ -1,5 +1,4 @@
 const util = require('util')
-const request = require('request')
 const uuidv4 = require('uuid/v4')
 const debug = require('debug')('botium-connector-botkit07')
 
@@ -23,7 +22,7 @@ class BotiumConnectorBotkit07 {
     return Promise.resolve()
   }
 
-  Start () {
+  async Start () {
     debug('Start called')
 
     if (this.caps[Capabilities.BOTKIT_USERID]) {
@@ -33,21 +32,22 @@ class BotiumConnectorBotkit07 {
     }
 
     const pingUrl = this.caps[Capabilities.BOTKIT_SERVER_URL]
-    return new Promise((resolve, reject) => {
-      request({
-        uri: pingUrl,
-        method: 'GET'
-      }, (err, response, body) => {
-        if (err) {
-          [debug, reject].forEach(fn => fn(`error on url check ${pingUrl}: ${err}`))
-        } else if (response.statusCode >= 400) {
-          [debug, reject].forEach(fn => fn(`url check ${pingUrl} got error response: ${response.statusCode}/${response.statusMessage}`))
-        } else {
-          debug(`success on url check ${pingUrl}`)
-          resolve()
-        }
-      })
-    })
+
+    try {
+      const response = await fetch(pingUrl, { method: 'GET' })
+
+      if (!response.ok) {
+        const errorMessage = `url check ${pingUrl} got error response: ${response.status}/${response.statusText}`
+        debug(errorMessage)
+        throw new Error(errorMessage)
+      }
+
+      debug(`success on url check ${pingUrl}`)
+    } catch (err) {
+      const errorMessage = `error on url check ${pingUrl}: ${err.message}`
+      debug(errorMessage)
+      throw err
+    }
   }
 
   UserSays (msg) {
@@ -60,63 +60,66 @@ class BotiumConnectorBotkit07 {
     this.userId = null
   }
 
-  _doRequest (msg) {
-    return new Promise((resolve, reject) => {
+  async _doRequest (msg) {
+    try {
       const requestOptions = this._buildRequest(msg)
       debug(`constructed requestOptions ${JSON.stringify(requestOptions, null, 2)}`)
 
-      request(requestOptions, (err, response, body) => {
-        if (err) {
-          reject(new Error(`rest request failed: ${util.inspect(err)}`))
-        } else {
-          if (response.statusCode >= 400) {
-            debug(`got error response: ${response.statusCode}/${response.statusMessage}`)
-            return reject(new Error(`got error response: ${response.statusCode}/${response.statusMessage}`))
-          }
-          resolve(this)
+      const response = await fetch(requestOptions.uri, requestOptions)
 
-          if (body) {
-            debug(`got response body: ${JSON.stringify(body, null, 2)}`)
+      if (!response.ok) {
+        debug(`got error response: ${response.status}/${response.statusText}`)
+        throw new Error(`got error response: ${response.status}/${response.statusText}`)
+      }
 
-            const botMsg = {
-              sourceData: body
-            }
+      const body = await response.json()
+      if (!body) {
+        return
+      }
+      // Process the response
+      debug(`got response body: ${JSON.stringify(body, null, 2)}`)
 
-            if (body.text) {
-              botMsg.messageText = body.text
-            }
-            if (body.quick_replies) {
-              botMsg.buttons = body.quick_replies.map(q => ({
-                text: q.title,
-                payload: q.payload
-              }))
-            }
-            if (body.files) {
-              botMsg.media = body.files.map(f => ({
-                mediaUri: f.url
-              }))
-            }
-            setTimeout(() => this.queueBotSays(botMsg), 0)
-          }
-        }
-      })
-    })
+      const botMsg = { sourceData: body }
+
+      if (body.text) {
+        botMsg.messageText = body.text
+      }
+      if (body.quick_replies) {
+        botMsg.buttons = body.quick_replies.map(q => ({
+          text: q.title,
+          payload: q.payload
+        }))
+      }
+      if (body.files) {
+        botMsg.media = body.files.map(f => ({
+          mediaUri: f.url
+        }))
+      }
+
+      setTimeout(() => this.queueBotSays(botMsg), 0)
+
+      return
+    } catch (err) {
+      throw new Error(`rest request failed: ${util.inspect(err)}`)
+    }
   }
 
   _buildRequest (msg) {
     const uri = `${this.caps[Capabilities.BOTKIT_SERVER_URL]}/botkit/receive`
 
-    const requestOptions = {
+    return {
       uri,
       method: 'POST',
-      json: true,
-      body: {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
         text: msg.messageText,
         user: this.userId,
         channel: 'webhook'
-      }
+      })
     }
-    return requestOptions
   }
 }
 
