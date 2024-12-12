@@ -2,7 +2,6 @@
 
 [![NPM](https://nodei.co/npm/botium-connector-botkit.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/botium-connector-botkit/)
 
-[![Codeship Status for codeforequity-at/botium-connector-botkit](https://app.codeship.com/projects/37c8d920-f4bf-0136-7dbf-66214a6dafed/status?branch=master)](https://app.codeship.com/projects/320746)
 [![npm version](https://badge.fury.io/js/botium-connector-botkit.svg)](https://badge.fury.io/js/botium-connector-botkit)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
