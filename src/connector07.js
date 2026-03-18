@@ -62,10 +62,10 @@ class BotiumConnectorBotkit07 {
 
   async _doRequest (msg) {
     try {
-      const requestOptions = this._buildRequest(msg)
-      debug(`constructed requestOptions ${JSON.stringify(requestOptions, null, 2)}`)
+      const { url, options } = this._buildRequest(msg)
+      debug(`constructed requestOptions ${JSON.stringify({ url, ...options }, null, 2)}`)
 
-      const response = await fetch(requestOptions.uri, requestOptions)
+      const response = await fetch(url, options)
 
       if (!response.ok) {
         debug(`got error response: ${response.status}/${response.statusText}`)
@@ -105,20 +105,22 @@ class BotiumConnectorBotkit07 {
   }
 
   _buildRequest (msg) {
-    const uri = `${this.caps[Capabilities.BOTKIT_SERVER_URL]}/botkit/receive`
+    const url = `${this.caps[Capabilities.BOTKIT_SERVER_URL]}/botkit/receive`
 
     return {
-      uri,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        text: msg.messageText,
-        user: this.userId,
-        channel: 'webhook'
-      })
+      url,
+      options: {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          text: msg.messageText,
+          user: this.userId,
+          channel: 'webhook'
+        })
+      }
     }
   }
 }

@@ -1,12 +1,14 @@
 {
   "name": "botium-connector-botkit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Botium Connector for Botkit",
   "main": "dist/botium-connector-botkit-cjs.js",
   "module": "dist/botium-connector-botkit-es.js",
   "scripts": {
     "build": "npm run eslint && rollup -c",
-    "eslint": "eslint index.js src/**/*.js"
+    "eslint": "eslint index.js src/**/*.js",
+    "test": "echo 'Not implemented yet'",
+    "test-nightly": "echo 'Not implemented yet'"
   },
   "repository": {
     "type": "git",
@@ -19,32 +21,26 @@
   },
   "homepage": "https://github.com/codeforequity-at/botium-core",
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/node": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.6",
-    "botium-core": "^1.7.3",
-    "chai": "^4.3.7",
-    "chai-as-promised": "^7.1.1",
-    "dotenv": "^16.0.3",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
     "eslint": "^7.32.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-mocha": "^10.1.0",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "rollup": "^1.27.9",
-    "rollup-plugin-babel": "^4.3.3",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "rollup": "^2.56.3",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.6",
-    "debug": "^4.1.1",
-    "lodash": "^4.17.15",
-    "request": "^2.88.0",
+    "@babel/runtime": "^7.15.4",
+    "debug": "^4.4.3",
+    "lodash": "^4.17.23",
     "uuid": "^3.3.3"
   },
   "peerDependencies": {
